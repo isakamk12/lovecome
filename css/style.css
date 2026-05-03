@@ -1,0 +1,279 @@
+:root {
+    /* カラーパレット */
+    --wood-bg: #2d1b11;
+    --wood-shelf: #4a2c1b;
+    --wood-shadow: #1a0e08;
+    --gold: #d4af37;
+    --gold-light: #f9e596;
+    --parchment: #f4e9d8;
+    --text-main: #33261d;
+    --heart-pink: #e85d75;
+    
+    /* フォント */
+    --font-merchen: 'Kiwi Maru', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--wood-bg);
+    /* 木目のテクスチャ風グラデーション */
+    background-image: 
+        radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 20px);
+    color: var(--parchment);
+    font-family: var(--font-merchen);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* 魔法の粉エフェクトコンテナ */
+#magic-dust-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.dust {
+    position: absolute;
+    background-color: var(--gold-light);
+    border-radius: 50%;
+    box-shadow: 0 0 6px 2px rgba(249, 229, 150, 0.6);
+    opacity: 0;
+    animation: floatUp 4s linear infinite, glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
+}
+
+@keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 4px 1px rgba(249, 229, 150, 0.4); }
+    50% { box-shadow: 0 0 10px 4px rgba(249, 229, 150, 0.8); }
+}
+
+.header {
+    text-align: center;
+    padding: 4rem 1rem 2rem;
+    position: relative;
+    z-index: 2;
+    text-shadow: 2px 2px 4px var(--wood-shadow);
+}
+
+.site-title {
+    font-size: 3.5rem;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.heart {
+    color: var(--heart-pink);
+    display: inline-block;
+    animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    10% { transform: scale(1.2); }
+    20% { transform: scale(1); }
+    30% { transform: scale(1.2); }
+    40% { transform: scale(1); }
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--parchment);
+    opacity: 0.9;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* タグフィルターエリア */
+.filter-section {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.tag {
+    background: rgba(244, 233, 216, 0.1);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.tag:hover, .tag.active {
+    background: var(--gold);
+    color: var(--wood-bg);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    transform: translateY(-2px);
+}
+
+/* 本棚エリア */
+.bookshelf {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 4rem 2rem;
+    padding: 2rem 1rem 6rem;
+    /* 本棚の棚板風のボーダー（リピート設定） */
+    background: linear-gradient(to bottom, transparent 310px, var(--wood-shelf) 310px, var(--wood-shadow) 320px);
+    background-size: 100% 320px;
+}
+
+/* 本のカード（3D演出用） */
+.book {
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+    height: 320px;
+    margin-bottom: -15px; /* 棚板に乗っているように見せるため */
+    transition: transform 0.4s ease;
+}
+
+.book:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    z-index: 10;
+}
+
+/* 本の表紙デザイン */
+.book-cover {
+    background-color: var(--book-color, #4a2531);
+    /* 古書風のテクスチャ（CSSグラデーション） */
+    background-image: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 5%, transparent 10%, rgba(255,255,255,0.1) 95%, rgba(0,0,0,0.2) 100%);
+    width: 100%;
+    height: 100%;
+    border-radius: 3px 10px 10px 3px;
+    box-shadow: inset 4px 0 10px rgba(0,0,0,0.3), 5px 5px 15px rgba(0,0,0,0.5);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    transition: transform 0.5s ease;
+    transform-origin: left center;
+}
+
+/* ページ部分（横から見た時の白い部分） */
+.book-pages {
+    position: absolute;
+    top: 2px;
+    right: -5px;
+    width: 10px;
+    height: calc(100% - 4px);
+    background: #e8dcc5;
+    border-radius: 0 4px 4px 0;
+    border: 1px solid #c7b69b;
+    border-left: none;
+    z-index: 1;
+    transform: translateZ(-10px);
+}
+
+/* ホバー時の本の開くような演出 */
+.book:hover .book-cover {
+    transform: rotateY(-15deg);
+    box-shadow: inset 4px 0 10px rgba(0,0,0,0.3), 15px 10px 20px rgba(0,0,0,0.4);
+}
+
+/* 装飾 */
+.book-decoration {
+    width: 80%;
+    height: 2px;
+    background: var(--gold);
+    margin: 10px 0;
+    position: relative;
+}
+
+.book-decoration::before, .book-decoration::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    top: -2px;
+}
+.book-decoration::before { left: -8px; }
+.book-decoration::after { right: -8px; }
+
+/* 本のテキスト・タグ */
+.book-title {
+    color: var(--gold-light);
+    font-size: 1.1rem;
+    margin: auto 0;
+    line-height: 1.4;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.book-author {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.book-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+.mini-tag {
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: 1px solid var(--gold);
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .site-title { font-size: 2.2rem; }
+    .bookshelf { 
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+        gap: 2rem 1rem;
+    }
+    .book { height: 240px; }
+    .book-title { font-size: 1rem; }
+    .book-cover { padding: 1rem; }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クセツヨ♡ラブコメ - メルヘン本棚</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="magic-dust-container"></div>
+
+    <header class="header">
+        <h1 class="site-title">
+            <span class="sparkle-text">クセツヨ</span>
+            <span class="heart">♡</span>
+            <span class="sparkle-text">ラブコメ</span>
+        </h1>
+        <p class="subtitle">〜 ちょっと可笑しくて、とびきり甘い魔法の物語たち 〜</p>
+    </header>
+
+    <main class="container">
+        <!-- 絞り込みタグエリア（今後用） -->
+        <section class="filter-section">
+            <div class="tags-container">
+                <button class="tag active" data-filter="all">すべて</button>
+                <button class="tag" data-filter="英数字">#英数字</button>
+                <button class="tag" data-filter="あ行">#あ行</button>
+                <button class="tag" data-filter="か行">#か行</button>
+                <button class="tag" data-filter="さ行">#さ行</button>
+                <button class="tag" data-filter="た行">#た行</button>
+                <button class="tag" data-filter="な行">#な行</button>
+                <button class="tag" data-filter="は行">#は行</button>
+                <button class="tag" data-filter="ま行">#ま行</button>
+                <button class="tag" data-filter="や行">#や行</button>
+                <button class="tag" data-filter="わ行">#わ行・他</button>
+            </div>
+        </section>
+
+        <!-- 本棚エリア -->
+        <section class="bookshelf" id="bookshelf-container">
+            <!-- 作品はJavaScriptによって動的に生成されます -->
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
