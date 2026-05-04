@@ -102,9 +102,67 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 0 2rem 2rem;
     position: relative;
     z-index: 2;
+}
+
+/* イントロダクション（序文）セクション */
+.intro-card {
+    background: var(--parchment);
+    color: var(--text-main);
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 50px rgba(0,0,0,0.1);
+    position: relative;
+    border: 2px solid var(--gold);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* 装飾的な角（再掲） */
+.intro-card::before, .intro-card::after {
+    content: '✧';
+    position: absolute;
+    color: var(--gold);
+    font-size: 1.5rem;
+}
+.intro-card::before { top: 10px; left: 10px; }
+.intro-card::after { bottom: 10px; right: 10px; }
+
+.intro-text-area {
+    width: 100%;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.intro-text-area > p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.poetic-lines {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding-top: 1.5rem;
+    font-style: italic;
+}
+
+.poetic-lines p {
+    margin-bottom: 1rem;
+    color: #554030;
+}
+
+.poetic-lines p:last-child {
+    margin-bottom: 0;
+    margin-top: 1.5rem;
+    font-weight: bold;
+    font-style: normal;
 }
 
 /* タグフィルターエリア */
@@ -285,11 +343,45 @@ body {
 
 @media (max-width: 768px) {
     .site-title { font-size: 2.2rem; }
+    .subtitle { font-size: 1rem; }
+    
+    .intro-card {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .intro-text-area > p {
+        font-size: 0.95rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .poetic-lines {
+        padding-top: 1.2rem;
+    }
+    
+    .poetic-lines p {
+        font-size: 0.85rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .intro-card {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .intro-text-area {
+        padding: 1.5rem 1rem;
+    }
+
     .bookshelf { 
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
         gap: 2rem 1rem;
+        /* スマホの本の高さ(240px)に合わせて棚の位置を調整 */
+        background: linear-gradient(to bottom, transparent 230px, var(--wood-shelf) 230px, var(--wood-shadow) 240px);
+        background-size: 100% 240px;
     }
+    
     .book { height: 240px; }
-    .book-title { font-size: 1rem; }
+    .book-title { font-size: 0.9rem; }
     .book-cover { padding: 1rem; }
 }
